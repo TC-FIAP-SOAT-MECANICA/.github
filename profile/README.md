@@ -1,175 +1,175 @@
-# Tech Challenge FIAP — Pós-Graduação em Software Architecture
+# 🏗️ Tech Challenge FIAP — Software Architecture
 
-### 📄 [Documentação Oficial do Desafio](https://docs.google.com/document/)
-### 🎥 Vídeo de Apresentação — [YouTube](https://youtu.be/)
+### 📄 [Documentação Oficial do Tech Challenge](https://docs.google.com/document/)
+### 🎥 [Vídeo de Apresentação](https://youtu.be/)
+### 🏛️ [Acessar documentação no Miro](https://miro.com/app/board/uXjVEVg990w=/?share_link_id=821131686431).
 
----
+# Sistema de Gestão para Oficina Mecânica
 
-## 🏗️ Arquitetura de Microsserviços — Sistema de Gerenciamento de Oficina Mecânica
+Aplicação desenvolvida como parte do Tech Challenge da Pós-Graduação em Software Architecture da FIAP, com o objetivo de centralizar e otimizar o gerenciamento de oficinas mecânicas.
 
-### 📌 Descrição da Arquitetura
+## 📌 Problema e Objetivo
 
-Este projeto foi desenvolvido como parte do Tech Challenge da FIAP, no curso de Pós-Graduação em Software Architecture, com foco na aplicação de conceitos de arquitetura de software em um sistema de gerenciamento de oficina mecânica.
+Oficinas mecânicas podem enfrentar dificuldades na gestão de atendimentos e execução de serviços, especialmente quando utilizam processos manuais e planilhas. Isso pode ocasionar perda do histórico de clientes e veículos, falhas no controle de peças e insumos, dificuldade no acompanhamento das ordens de serviço e falta de visibilidade sobre os prazos e tempos de execução.
 
-A solução foi concebida com base nos seguintes pilares arquiteturais:
+O projeto propõe um sistema integrado para centralizar o gerenciamento de clientes, veículos, serviços, estoque e ordens de serviço, desde a entrada do veículo até sua entrega.
 
-- **Java 21:** linguagem utilizada no desenvolvimento da aplicação.
-- **Clean Architecture:** organização das responsabilidades e separação das regras de negócio das tecnologias externas.
-- **API First:** definição dos contratos das APIs como parte central do processo de desenvolvimento.
+A solução permite acompanhar o andamento dos serviços, consultar o histórico dos atendimentos, elaborar e aprovar orçamentos e controlar as movimentações de estoque.
 
-A implementação atual concentra as funcionalidades em um único serviço, estruturado para facilitar a manutenção, a evolução e a futura expansão da solução.
+## ⚙️ Funcionalidades
 
-### 🧩 Microsserviços
+- **Autenticação e usuários:** login, geração de tokens JWT e controle de acesso por perfil.
+- **Clientes:** cadastro, consulta, atualização e gerenciamento.
+- **Veículos:** cadastro e gerenciamento de veículos vinculados aos clientes.
+- **Serviços:** gerenciamento do catálogo de serviços da oficina.
+- **Peças e estoque:** cadastro de peças, controle de quantidades e movimentações.
+- **Ordens de Serviço:** abertura, diagnóstico, orçamento, aprovação, execução, finalização e entrega.
+- **Acompanhamento:** consulta das ordens de serviço, histórico e aprovação de orçamentos pelos clientes.
 
-#### 🔹 `ms-mecanica`
+### Perfis de acesso
 
-Responsável pelo gerenciamento das principais funcionalidades do sistema:
-
-- Cadastro e gerenciamento de clientes pessoa física (PF) e pessoa jurídica (PJ).
-- Cadastro e gerenciamento de veículos, incluindo placa, marca, modelo e ano.
-- Controle de estoque de peças e insumos.
-- Autenticação e autorização de usuários, incluindo clientes, mecânicos e administradores.
-- Consulta detalhada de atendimentos, com organização por prioridade.
-- Acompanhamento do progresso e do status dos serviços.
-- Demais funcionalidades relacionadas à operação e ao gerenciamento da oficina mecânica.
-
-O serviço foi desenvolvido com **Java 21** e **Spring Boot**, utilizando os recursos do ecossistema Spring para injeção de dependências, persistência de dados e exposição de endpoints REST.
-
----
-
-## ⚙️ Tecnologias Utilizadas
-
-- **Linguagem e framework:** Java 21 e Spring Boot.
-- **Persistência de dados:** Spring Data JPA.
-- **Gerenciamento de dependências:** Maven e/ou Gradle, conforme a configuração do projeto.
-- **Banco de dados:**
-  - MySQL 8.3, executado em container Docker.
-  - H2, utilizado para testes e execução em ambiente local, conforme a configuração.
-- **Documentação de APIs:** OpenAPI/Swagger, alinhada à abordagem API First.
-- **Mapeamento de objetos:** MapStruct, para conversão entre entidades e DTOs.
-- **Redução de código repetitivo:** Lombok.
-- **Controle de versão:** Git.
-- **Conteinerização e ambiente local:** Docker e Docker Compose.
-- **Testes:** JUnit 5, Mockito e Postman.
-
----
-
-## 🧪 Estratégia de Testes
-
-A estratégia de testes contempla a validação das regras de negócio e dos endpoints disponibilizados pela aplicação.
-
-- **Testes unitários:** JUnit 5 e Mockito, para validar comportamentos e regras de negócio de forma isolada.
-- **Testes de API:** Postman, para validar requisições, respostas e os contratos dos endpoints REST, por meio de collections manuais ou automatizadas.
-- **Testes de persistência:** utilização do H2 e/ou do banco configurado para validar os comportamentos de acesso a dados, conforme a implementação.
-
----
-
-## 📊 Diagramas da Arquitetura
-
-Os diagramas do projeto serão disponibilizados na pasta `images/` do repositório.
-
-### Diagrama da Arquitetura
-
-![Diagrama da Arquitetura](images/diagrama-arquitetura.svg)
-
-### Outros diagramas
-
-Conforme a evolução do projeto, esta seção poderá incluir diagramas complementares para representar a organização interna da aplicação, os principais fluxos de negócio e as interações entre seus componentes.
-
----
-
-## 🐳 Execução do Projeto com Docker Compose
-
-### ✅ Pré-requisitos
-
-Antes de executar os scripts de inicialização, instale os seguintes softwares:
-
-| Requisito | Descrição |
+| Perfil | Responsabilidade |
 |---|---|
-| [Docker](https://www.docker.com/) | Necessário para executar os containers e gerenciar o ambiente local. |
-| [Java 21+](https://www.oracle.com/java/technologies/javase/jdk21-archive-downloads.html) | Necessário para executar a aplicação localmente, caso ela não seja executada em um container. |
-| [Postman](https://www.postman.com/downloads/) | Utilizado para testar os endpoints e executar as collections de API. |
-| [DBeaver](https://dbeaver.io/download/) | Opcional, para visualizar e consultar os bancos de dados por meio de uma interface gráfica. |
-| Git | Necessário para clonar o repositório do projeto. |
+| `ADMIN` | Gerenciamento administrativo da oficina. |
+| `MECANICO` | Diagnóstico, execução dos serviços e gerenciamento operacional. |
+| `CLIENTE` | Consulta de veículos e ordens de serviço, além da aprovação de orçamentos. |
 
-> **Observação:** o Docker Compose deve estar disponível no ambiente. O Docker Desktop já inclui esse recurso nas instalações compatíveis. Para executar a aplicação pela IDE ou pelo terminal, utilize um JDK 21 ou superior.
+### Fluxo da Ordem de Serviço
 
----
+`RECEBIDA → EM_DIAGNOSTICO → AGUARDANDO_APROVACAO → EM_EXECUCAO → FINALIZADA → ENTREGUE`
 
-## 💻 Como Executar
+## 🏛️ Arquitetura
 
-Os scripts `setup.sh` e `setup.bat` automatizam a preparação do ambiente local.
+A aplicação utiliza **arquitetura monolítica**, desenvolvida em Java 21 com Spring Boot.
 
-### 🐧 Linux ou macOS
+Principais abordagens adotadas:
 
-1. Abra o terminal no diretório que deseja utilizar para o projeto.
-2. Conceda permissão de execução ao script:
+- **DDD (Domain-Driven Design):** modelagem orientada ao domínio e às regras de negócio.
+- **Event Storming:** identificação dos eventos, comandos e fluxos de negócio.
+- **Clean Architecture:** separação de responsabilidades e baixo acoplamento.
+- **API First:** definição dos contratos da API utilizando OpenAPI.
+- **C4 Model:** documentação arquitetural nos quatro níveis.
 
-   ```bash
-   chmod +x setup.sh
-   ```
+A aplicação é organizada em camadas, utilizando Controllers, Use Cases, Gateways e componentes de infraestrutura.
 
-3. Execute o script:
+**Diagramas e modelagem:** [Acessar documentação no Miro](https://miro.com/app/board/uXjVEVg990w=/?share_link_id=821131686431).
 
-   ```bash
-   ./setup.sh
-   ```
+## 💻 Tecnologias Utilizadas
 
-### 🪟 Windows
+| Categoria | Tecnologia |
+|---|---|
+| Linguagem | Java 21 |
+| Framework | Spring Boot |
+| Segurança | Spring Security e JWT |
+| Persistência | Spring Data JPA |
+| Banco de dados | PostgreSQL 16 |
+| Testes locais | H2 |
+| Contratos e documentação | OpenAPI / Swagger |
+| Build | Maven |
+| Testes automatizados | JUnit 5, Mockito e MockMvc |
+| Testes de API | Postman |
+| Conteinerização | Docker e Docker Compose |
+| Versionamento | Git e GitHub |
 
-1. Abra o terminal no diretório que contém o arquivo `setup.bat`.
-2. Execute o script:
+### Banco de Dados
 
-   ```cmd
-   setup.bat
-   ```
+O PostgreSQL foi escolhido por oferecer confiabilidade, integridade referencial, suporte a transações e flexibilidade para consultas SQL, atendendo às necessidades de persistência e relacionamento entre clientes, veículos, peças e ordens de serviço.
 
-   Alternativamente, execute o arquivo `setup.bat` diretamente pelo Explorador de Arquivos.
+## 🧪 Testes
 
----
+A aplicação contempla testes unitários, de integração e testes funcionais de API.
 
-## 🛠️ O que os Scripts de Inicialização Fazem?
+São disponibilizadas duas collections Postman:
 
-Os scripts automatizam a preparação do ambiente de desenvolvimento, contemplando as seguintes etapas:
+**1. Testes funcionais**
 
-- Clonam o repositório do serviço `ms-mecanica`:
+[oficina-mecanica.postman_collection.json](https://github.com/TC-FIAP-SOAT-MECANICA/collections/blob/main/oficina-mecanica.postman_collection.json)
 
-  [https://github.com/TC-FIAP-SOAT-MECANICA/ms-mecanica](https://github.com/TC-FIAP-SOAT-MECANICA/ms-mecanica)
+Contempla os principais recursos da API, incluindo cenários de sucesso, erro, autenticação e permissões.
 
-- Criam ou disponibilizam um arquivo `docker-compose.yml` para configuração dos bancos de dados MySQL e PostgreSQL.
-- Configuram volumes dedicados para persistência dos dados dos containers.
-- Iniciam os containers em segundo plano utilizando:
+**2. Fluxo completo da Ordem de Serviço**
 
-  ```bash
-  docker compose up -d
-  ```
+[oficina-mecanica-fluxo-os.postman_collection.json](https://github.com/TC-FIAP-SOAT-MECANICA/collections/blob/main/oficina-mecanica-fluxo-os.postman_collection.json)
 
-> **Importante:** a configuração descrita acima depende da implementação dos scripts. Caso o projeto utilize somente MySQL, ajuste a descrição para refletir os serviços efetivamente configurados no `docker-compose.yml`.
+Simula o ciclo completo de uma OS, desde os cadastros iniciais até a entrega do veículo, incluindo diagnóstico, orçamento, aprovação do cliente e movimentação do estoque.
 
----
+[**Acessar repositório das Collections**](https://github.com/TC-FIAP-SOAT-MECANICA/collections)
 
-## 🔍 Observações
+## 🐳 Execução com Docker
 
-- Os containers dos bancos de dados são iniciados automaticamente pelos scripts, desde que o Docker esteja instalado e em execução.
-- O microsserviço `ms-mecanica` deve ser iniciado separadamente pela IDE ou pelo terminal, caso não esteja configurado para execução em container.
-- O Postman pode ser utilizado para testar os endpoints REST por meio das collections disponibilizadas no projeto.
-- Os dados persistidos nos volumes Docker são mantidos após a interrupção dos containers, desde que os volumes não sejam removidos.
-- As configurações de conexão, credenciais e portas dos bancos de dados devem corresponder às definições utilizadas pela aplicação e pelo Docker Compose.
+A configuração do ambiente está centralizada em um repositório independente, responsável pela orquestração da API e do PostgreSQL.
 
----
+**Repositório:** [TC-FIAP-SOAT-MECANICA/docker](https://github.com/TC-FIAP-SOAT-MECANICA/docker)
 
-## 📁 Estrutura Esperada Após a Execução
+### Pré-requisitos
 
-Após a execução dos scripts, a estrutura de diretórios deverá ser semelhante à seguinte:
+- Git.
+- Docker Desktop.
+- Docker Compose.
 
-```text
-/seu-diretorio/
-├── data/
-├── images/
-│   └── diagrama-arquitetura.svg
-├── ms-mecanica/
-├── docker-compose.yml
-├── setup.sh
-├── setup.bat
-└── README.md
+### Linux, macOS, Git Bash ou WSL
+
+Baixe o script:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/TC-FIAP-SOAT-MECANICA/docker/main/setup.sh -o setup.sh
 ```
+
+Conceda permissão de execução:
+
+```bash
+chmod +x setup.sh
+```
+
+Execute:
+
+```bash
+./setup.sh
+```
+
+### Windows (Prompt de Comando ou PowerShell)
+
+Baixe o script:
+
+```powershell
+curl.exe -fsSL https://raw.githubusercontent.com/TC-FIAP-SOAT-MECANICA/docker/main/setup.bat -o setup.bat
+```
+
+Execute:
+
+```bat
+setup.bat
+```
+
+Os scripts automatizam a clonagem dos repositórios, configuração do ambiente, construção da imagem da API e inicialização dos containers.
+
+Para informações sobre portas, credenciais, variáveis de ambiente e comandos Docker, consulte o [README do repositório Docker](https://github.com/TC-FIAP-SOAT-MECANICA/docker).
+
+## 📚 Documentação da API
+
+O contrato OpenAPI está disponível no repositório:
+
+[**oficina-mecanica-contract.yaml**](https://github.com/TC-FIAP-SOAT-MECANICA/ms-mecanica/blob/main/oficina-mecanica-contract.yaml)
+
+Após iniciar a aplicação, a documentação e o estado da API podem ser consultados nos seguintes endpoints:
+
+| Recurso | Endpoint padrão |
+|---|---|
+| API | `http://localhost:8080/api/v1` |
+| Contrato OpenAPI | `/api/v1/oficina-mecanica-contract.yaml` |
+| Health Check | `/api/v1/actuator/health` |
+
+A porta externa pode ser personalizada por meio da variável `API_PORT` no ambiente Docker.
+
+## 🔗 Repositórios
+
+| Repositório | Descrição |
+|---|---|
+| [Organização FIAP](https://github.com/TC-FIAP-SOAT-MECANICA) | Organização do projeto. |
+| [ms-mecanica](https://github.com/TC-FIAP-SOAT-MECANICA/ms-mecanica) | Código-fonte da aplicação. |
+| [docker](https://github.com/TC-FIAP-SOAT-MECANICA/docker) | Configuração e orquestração do ambiente. |
+| [collections](https://github.com/TC-FIAP-SOAT-MECANICA/collections) | Collections de testes Postman. |
+
+---
+
+**FIAP — Pós-Graduação em Software Architecture**
