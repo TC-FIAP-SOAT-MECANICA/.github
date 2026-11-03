@@ -1,6 +1,6 @@
 # 🏗️ Tech Challenge FIAP — Software Architecture
 
-### 📄 [Documentação Oficial do Tech Challenge](https://docs.google.com/document/)
+### 📄 [Documentação Oficial do Tech Challenge](https://docs.google.com/document/d/1RPeK3JgDrr0Tr1RDDOBvYhXcyjjhGP35yhkQcw4bi7o)
 ### 🎥 [Vídeo de Apresentação](https://youtu.be/)
 ### 🏛️ [Acessar documentação no Miro](https://miro.com/app/board/uXjVEVg990w=/?share_link_id=821131686431).
 
