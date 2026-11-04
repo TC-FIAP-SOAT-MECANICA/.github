@@ -20,6 +20,7 @@ A solução permite acompanhar o andamento dos serviços, consultar o histórico
 
 - **Autenticação e usuários:** login, geração de tokens JWT e controle de acesso por perfil.
 - **Clientes:** cadastro, consulta, atualização e gerenciamento.
+- **Mecânicos:** cadastro, consulta, atualização e gerenciamento.
 - **Veículos:** cadastro e gerenciamento de veículos vinculados aos clientes.
 - **Serviços:** gerenciamento do catálogo de serviços da oficina.
 - **Peças e estoque:** cadastro de peças, controle de quantidades e movimentações.
